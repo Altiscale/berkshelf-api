@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export PATH=/opt/chef/embedded/bin:$PATH
+export PATH=<%= node[:berkshelf_api][:ruby_bin] %>:$PATH
 export HOME=<%= node[:berkshelf_api][:deploy_path] %>
 cd $HOME
 

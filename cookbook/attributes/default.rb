@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+default['apt']['compile_time_update'] = true
+default['build-essential']['compile_time'] = true
 default[:berkshelf_api][:repo]           = "berkshelf/berkshelf-api"
 default[:berkshelf_api][:token]          = nil
 default[:berkshelf_api][:release]        = "v#{Berkshelf::API::Chef.cookbook_version(run_context)}"
@@ -26,7 +28,7 @@ default[:berkshelf_api][:home]           = "/etc/berkshelf/api-server"
 default[:berkshelf_api][:deploy_path]    = "/opt/berkshelf-api/#{node[:berkshelf_api][:release]}"
 default[:berkshelf_api][:port]           = 26200
 default[:berkshelf_api][:proxy_port]     = 80
-default[:berkshelf_api][:host]           = node[:fqdn]
+default[:berkshelf_api][:host]           = node[:fqdn] || node[:machinename] || node[:hostname]
 default[:berkshelf_api][:config_path]    = "#{node[:berkshelf_api][:home]}/config.json"
 default[:berkshelf_api][:config]         = {
   home_path: node[:berkshelf_api][:home]
